@@ -1,0 +1,27 @@
+#!/usr/bin/python
+import commands
+import socket
+import sys
+
+destSwitch = sys.argv[1]
+ipSrc = ''
+mac = ''
+#pingCmd = "ping -c1 "+ipDest
+#output = commands.getoutput(pingCmd)
+#words = commands.getoutput("ifconfig").split()
+#for line in words:
+#  if "HWaddr" in line:
+#    mac = words[ words.index("HWaddr") + 1 ]
+#  elif "addr" in line:
+#    ipSrc = words[line.index("addr")+6 ]
+#    ipSrc = ipSrc.split(':')[1]
+sourceSwitch = 's1'
+
+s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+port = 12345
+s.connect(('192.168.56.102', port))
+
+s.sendall(sourceSwitch +' ' + destSwitch + '\n')
+
+
+s.close
